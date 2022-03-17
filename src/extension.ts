@@ -13,6 +13,19 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
+    vscode.commands.registerCommand("rubber-ducker-2.refresh", () => {
+      RubberDuckerPanel.kill();
+      RubberDuckerPanel.createOrShow(context.extensionUri);
+
+      setTimeout(() => {
+        vscode.commands.executeCommand(
+          "workbench.action.webview.openDeveloperTools"
+        );
+      }, 1000);
+    })
+  );
+
+  context.subscriptions.push(
     vscode.commands.registerCommand("rubber-ducker-2.doSomething", async () => {
       const answer = await vscode.window.showInformationMessage(
         "this is somehting coool",

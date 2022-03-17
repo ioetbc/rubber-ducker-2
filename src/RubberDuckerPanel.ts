@@ -123,7 +123,7 @@ export class RubberDuckerPanel {
 
   private _getHtmlForWebview(webview: vscode.Webview) {
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "main.js")
+      vscode.Uri.joinPath(this._extensionUri, "out/compiled", "helloWorld.js")
     );
 
     const stylesResetUri = webview.asWebviewUri(
@@ -147,8 +147,6 @@ export class RubberDuckerPanel {
                     <script nonce="${nonce}"></script>
                 </head>
                 <body>
-                <h1>Rubber ducker</h1>
-                <button id="thing">a button</button>
                 </body>
                 <script src="${scriptUri}" nonce="${nonce}"></script>
             </html>`;

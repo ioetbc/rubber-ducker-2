@@ -11,7 +11,8 @@
   ],
   "activationEvents": [
     "onCommand:rubber-ducker-2.helloWorld",
-    "onCommand:rubber-ducker-2.doSomething"
+    "onCommand:rubber-ducker-2.doSomething",
+    "onCommand:rubber-ducker-2.refresh"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -23,14 +24,19 @@
       {
         "command": "rubber-ducker-2.doSomething",
         "category": "rubberDucker",
-        "title": "doSomething"
+        "title": "DoSomething"
+      },
+      {
+        "command": "rubber-ducker-2.refresh",
+        "category": "rubberDucker",
+        "title": "Refresh"
       }
     ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
-    "watch": "webpack --watch",
+    "watch": "concurrently \"rollup -c -w\" \"webpack --watch\"",
     "package": "webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
@@ -39,19 +45,29 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.65.0",
+    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@rollup/plugin-typescript": "^8.3.1",
+    "@tsconfig/svelte": "^3.0.0",
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.1.0",
     "@types/node": "14.x",
+    "@types/vscode": "^1.65.0",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
+    "@vscode/test-electron": "^2.1.2",
+    "concurrently": "^7.0.0",
     "eslint": "^8.9.0",
     "glob": "^7.2.0",
     "mocha": "^9.2.1",
-    "typescript": "^4.5.5",
+    "rollup-plugin-svelte": "^7.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "svelte": "^3.46.4",
+    "svelte-check": "^2.4.6",
+    "svelte-preprocess": "^4.10.4",
     "ts-loader": "^9.2.6",
+    "typescript": "^4.5.5",
     "webpack": "^5.69.1",
-    "webpack-cli": "^4.9.2",
-    "@vscode/test-electron": "^2.1.2"
+    "webpack-cli": "^4.9.2"
   }
 }
