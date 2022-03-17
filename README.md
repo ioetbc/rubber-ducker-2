@@ -10,6 +10,12 @@
 
 `RubberDuckerPanel` this links to a page. the pages live `src/webviews/pages` for each page you will have a panel.
 
+### To send messages from the webview to the provider
+
+you can get the panel and the components / pages to speak to eachother by using something like `tsvscode.postMessage` this will post a message from the component to the provider and you can pick the data up by listening for the events in the `onDidReceiveMessage` hook within the provider
+
+### To send messages from the provider to the webview
+
 ## Run the API locally
 
 ## Tips
